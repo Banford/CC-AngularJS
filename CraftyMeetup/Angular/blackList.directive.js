@@ -6,7 +6,6 @@
         .directive('blacklist', blacklist);
     
     function blacklist() {
-        console.log("blacklist");
         var directive = {
             require: 'ngModel',
             link: link,

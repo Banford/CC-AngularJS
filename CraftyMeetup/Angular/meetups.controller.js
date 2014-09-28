@@ -23,7 +23,7 @@
 
     angular
         .module('craftyMeetup')
-        .controller('meetupsController', function ($scope) {
+        .controller('meetupsController', function ($scope, $http, reviews) {
 
             $scope.meetups = [];
 
@@ -33,6 +33,21 @@
                     $scope.newMeetup = createNewMeetup();
                 }
             }
+
+            $scope.getReview = function(meetup) {
+                reviews.getReview(meetup);
+            }
+
+            //$scope.getReview = function (meetup) {
+            //    $http.get("http://localhost:1530/api/reviews")
+            //        .success(function(data) {
+
+            //            if (!meetup.reviews) meetup.reviews = [];
+
+            //            meetup.reviews.push(data);
+
+            //        });
+            //}
 
             init();
 

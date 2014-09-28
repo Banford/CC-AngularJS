@@ -3,4 +3,16 @@
     <p>{{meetup.location}}</p>
     <p>E-mail: {{meetup.email}}</p>
     <p>{{meetup.date | date:"dd/MM/yyyy"}}</p>
+    
+    <div ng-show="meetup.reviews && meetup.reviews.length > 0">
+        <h3>Reviews</h3>
+        <ul>
+            <li ng-repeat="review in meetup.reviews">
+                Name: {{review.Name}} | Rating: {{review.Rating}}<br/>
+                {{review.Comment}}
+            </li>
+        </ul>
+    </div>
+    
+    <button class="btn btn-primary btn-sm" ng-click="getReview(meetup)">Get Review</button>
 </div>
