@@ -6,21 +6,16 @@
 <h2>Upcoming meetups</h2>
 <div class="row" ng-controller="meetupsController">
     <div class="col-xs-6">
-
-        <div class="well" ng-repeat="meetup in meetups">
-            <h2>{{meetup.name}}</h2>
-            <p>{{meetup.location}}</p>
-            <p>E-mail: {{meetup.email}}</p>
-            <p>{{meetup.date | date:"dd/MM/yyyy"}}</p>
-        </div>
+        <meetup-details ng-repeat="meetup in meetups"></meetup-details>
     </div>
 
     <div class="col-xs-6">
-
         <form class="well" name="addMeetupForm" ng-submit="submitNewMeetup(newMeetup)" novalidate>
             <div class="form-group">
                 <label for="name">Name</label>
-                <input name="name" type="text" placeholder="Meetup Name" ng-model="newMeetup.name" required />
+                <input name="name" type="text" placeholder="Meetup Name" ng-model="newMeetup.name" blacklist="doge,lol,wtf" required />
+                
+                <p class="alert-danger" ng-show="addMeetupForm.name.$dirty && addMeetupForm.name.$error.blacklist">Please make your meetup name less silly!</p>
             </div>
 
             <div class="form-group">
@@ -47,4 +42,6 @@
 
 @section FooterScripts{
     <script src="~/Angular/meetups.controller.js"></script>
+    <script src="~/Angular/meetupDetails.directive.js"></script>
+    <script src="~/Angular/blackList.directive.js"></script>
 }
