@@ -25,22 +25,31 @@
         .module('craftyMeetup')
         .controller('meetupsController', function ($scope) {
 
+            $scope.meetups = [];
+
             $scope.submitNewMeetup = function (newMeetup) {
-                // ToDo: Implement
+                if ($scope.addMeetupForm.$valid) {
+                    $scope.meetups.push(angular.copy(newMeetup));
+                    $scope.newMeetup = createNewMeetup();
+                }
             }
 
             init();
 
-        function init() {
-            $scope.meetups = meetups;
-            $scope.newMeetup = {
-                name: "",
-                location: "",
-                email: "",
-                date: null
-            };
-        }
-    });
+            function createNewMeetup() {
+                return {
+                    name: "",
+                    location: "",
+                    email: "",
+                    date: null
+                };
+            }
 
-    
+            function init() {
+                $scope.meetups = meetups;
+                $scope.newMeetup = createNewMeetup();
+            }
+        });
+
+
 })();
